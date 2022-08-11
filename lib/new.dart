@@ -13,13 +13,6 @@ class _ResState extends State<Res> {
   var Date = DateFormat('dd/MM/yyyy').format(DateTime.now()),
       Time = DateFormat('hh:mm:ss').format(DateTime.now());
 
-  @override
-  void initState() {
-    _timeString = _formatDateTime(DateTime.now());
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
-    super.initState();
-  }
-
   des() {
     if (angka != 1) {
       setState(() {
