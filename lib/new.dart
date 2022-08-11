@@ -10,8 +10,7 @@ class Res extends StatefulWidget {
 
 class _ResState extends State<Res> {
   int angka = 1;
-  var Date = DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      Time = DateFormat('hh:mm:ss').format(DateTime.now());
+  var Hold = '';
 
   des() {
     if (angka != 1) {
@@ -19,13 +18,11 @@ class _ResState extends State<Res> {
         angka--;
       });
     }
-    print(angka);
   }
 
   inc() {
     setState(() {
       angka++;
-      print(angka);
     });
   }
 
@@ -40,33 +37,48 @@ class _ResState extends State<Res> {
                 margin: EdgeInsets.only(top: 100),
                 alignment: Alignment.center,
                 child: Container(
+                  // margin: EdgeInsets.only(top: 100, bottom: 100),
                   alignment: Alignment.center,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        Date,
+                        DateFormat('dd/MM/yyyy').format(DateTime.now()),
                         style: TextStyle(fontSize: 18),
                       ),
                       Text(
-                        Time,
+                        DateFormat('hh:mm:ss').format(DateTime.now()),
                         style: TextStyle(
                             fontSize: 10 + double.parse(angka.toString())),
                       ),
-                      Column(children: [
-                        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            // ignore: deprecated_member_use
-                            children: [
-                              RaisedButton(
-                                onPressed: () => des(),
-                                child: const Icon(Icons.add),
-                              ),
-                              RaisedButton(
-                                onPressed: () => inc(),
-                                child: Icon(Icons.add),
-                              ),
-                            ])
-                      ])
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              // ignore: deprecated_member_use
+                              children: [
+                                RaisedButton(
+                                  onPressed: () => des(),
+                                  child: const Icon(Icons.remove),
+                                ),
+                                RaisedButton(
+                                  onPressed: () => setState(() {
+                                    Hold = DateFormat('dd/MM/yyyy hh:mm:ss')
+                                        .format(DateTime.now());
+                                  }),
+                                  child: Text('Get All'),
+                                ),
+                                RaisedButton(
+                                  onPressed: () => inc(),
+                                  child: Icon(Icons.add),
+                                ),
+                              ])
+                        ],
+                      ),
+                      Text(
+                        Hold,
+                        style: TextStyle(fontSize: 20),
+                      )
                     ],
                   ),
                 ),
